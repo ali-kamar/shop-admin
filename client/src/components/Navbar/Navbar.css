@@ -1,0 +1,64 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 200px;
+  background-color: rgb(41, 41, 41);
+  padding: 10px;
+}
+
+.inputBox_container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  max-width: 14em;
+  width: fit-content;
+  height: fit-content;
+  background-color: rgb(120, 164, 247);
+  border-radius: 0.8em;
+  overflow: hidden;
+  height: 30px;
+}
+
+.search_icon {
+  height: 1em;
+  padding: 0 0.5em 0 0.8em;
+  fill: rgb(41, 41, 41);
+}
+
+.inputBox {
+  background-color: transparent;
+  color: #ffffff;
+  outline: none;
+  width: 100%;
+  border: 0;
+  padding: 0.5em 1.5em 0.5em 0;
+  font-size: 1em;
+}
+
+::placeholder {
+  color: white;
+}
+
+/* .add-product-button{
+  margin-left: 20px;
+} */
+.category-dropdown select{
+  width: 200px;
+  margin-left: 100px;
+  background-color: rgb(120, 164, 247);
+  color: white;
+  border: 1px solid;
+  border-radius: 0.8em;
+  text-transform: capitalize;
+  font-size: 13px;
+  height: 30px;
+}
+.category-dropdown select option {
+  border-bottom: 1px solid black;
+  font-size: 15px;
+  margin-top: 3px;
+  text-transform: capitalize;
+  
+}
