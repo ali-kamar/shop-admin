@@ -58,9 +58,8 @@ const Home = () => {
 
   return (
     <div>
-      <hr />
       <h2 className="title">Products</h2>
-      <hr />
+
       <div className="product">
         {products.map((product) => (
           <Products key={product.id} product={product} />

@@ -1,0 +1,35 @@
+.form-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    margin-top: 20px;
+    background-color: rgb(41, 41, 41);
+    height: 400px;
+    width: 500px;
+    padding: 20px;
+}
+.form h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    border-bottom: 1px white solid;
+    color: rgb(120, 164, 247);
+}
+
+.inputs label, input {
+    display: block;
+    color: white;
+   
+}
+.inputs input {
+    width: 80%;
+    margin: 8px auto;
+    
+}
+.form-btn{
+   display: flex;
+   justify-content: center; 
+   margin-top: 15px;
+}

@@ -5,6 +5,7 @@
 }
 
 .title{
-  margin: 3px auto;
+  margin: 8px auto;
   text-align: center;
+  border-bottom: 1px rgb(120, 164, 247) solid;
 }
