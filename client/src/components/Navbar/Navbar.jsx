@@ -4,7 +4,7 @@ import CategoryDropdown from "./components/CategoryDropdown";
 import AddProductButton from "./components/AddProductButton";
 import './Navbar.css'
 //{ categories, onSearch, onCategorySelect }
-const Navbar = ({ onCategorySelect }) => {
+const Navbar = ({ onCategorySelect, onSearch }) => {
   const categories = [
     "kitchen",
     "shisha",
@@ -24,7 +24,7 @@ const Navbar = ({ onCategorySelect }) => {
         categories={categories}
         onCategorySelect={onCategorySelect}
       />
-      <SearchBar />
+      <SearchBar onSearch={onSearch} />
     </div>
   );
 };

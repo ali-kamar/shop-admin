@@ -5,13 +5,13 @@ import Navbar from "../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 const Home = () => {
- 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [search, setSearch] = useState("");
   const [error, setError] = useState({
     isError: false,
-    msg: ''
+    msg: "",
   });
   const navigate = useNavigate();
 
@@ -21,44 +21,49 @@ const Home = () => {
     }
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get(
-          selectedCategory === "All"
-            ? "/products"
-            : `/products?category=${selectedCategory}`
-        );
+        const { data } = await axios.get("/products", {
+          params: {
+            search: search,
+            category: selectedCategory === "All" ? "" : selectedCategory,
+          },
+        });
         setProducts(data.products);
         setLoading(false);
       } catch (err) {
         setError({
           isError: true,
-          msg: `${err.response.data.msg}`
+          msg: `${err.response.data.msg}`,
         });
         setLoading(false);
-      } 
+      }
     };
 
     fetchProducts();
-  }, [navigate, selectedCategory]);
+  }, [navigate, selectedCategory, search]);
 
-    const onCategorySelect = (category) => {
-      setSelectedCategory(category);
-    };
+  const onCategorySelect = (category) => {
+    setSelectedCategory(category);
+  };
 
-const messageStyle = {
-  fontSize: "2rem",
-  color: "white",
-  textAlign: "center",
-  padding: "20px",
-  backgroundColor: "rgba(0, 0, 0, 0.7)",
-  borderRadius: "10px",
-};
+  const onSearch = (name) => {
+    setSearch(name);
+  };
 
-if (loading) return <p style={messageStyle}>Loading...</p>;
-if (error.isError) return <p style={messageStyle}>Error: {error.msg}</p>;
+  const messageStyle = {
+    fontSize: "2rem",
+    color: "white",
+    textAlign: "center",
+    padding: "20px",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    borderRadius: "10px",
+  };
+
+  if (loading) return <p style={messageStyle}>Loading...</p>;
+  if (error.isError) return <p style={messageStyle}>Error: {error.msg}</p>;
 
   return (
     <>
-      <Navbar onCategorySelect={onCategorySelect} />
+      <Navbar onCategorySelect={onCategorySelect} onSearch={onSearch}/>
       <div>
         <h2 className="title">Products</h2>
 
@@ -70,7 +75,6 @@ if (error.isError) return <p style={messageStyle}>Error: {error.msg}</p>;
       </div>
     </>
   );
-  
 };
 
 export default Home;
