@@ -3,8 +3,14 @@ const { StatusCodes } = require("http-status-codes");
 const { BadRequestError, NotFoundError } = require("../errors");
 
 const getAllProducts = async (req, res) => {
-  const product = await Product.find().sort("createdAt");
-  res.status(StatusCodes.OK).json({ product });
+  try {
+    const { category } = req.query;
+    const filter = category ? { category } : {};
+    const products = await Product.find(filter).sort("createdAt");
+    res.status(StatusCodes.OK).json({ products });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error.message });
+  }
 };
 
 const getProduct = async (req, res) => {

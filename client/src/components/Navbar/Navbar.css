@@ -41,24 +41,37 @@
   color: white;
 }
 
-/* .add-product-button{
-  margin-left: 20px;
-} */
-.category-dropdown select{
-  width: 200px;
+.category-dropdown {
   margin-left: 100px;
+}
+
+.category-dropdown select {
+  width: 200px;
+  padding: 0.5em;
   background-color: rgb(120, 164, 247);
   color: white;
-  border: 1px solid;
+  border: 1px solid rgb(41, 41, 41);
   border-radius: 0.8em;
   text-transform: capitalize;
-  font-size: 13px;
-  height: 30px;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+  outline: none;
 }
+
+.category-dropdown select:hover {
+  background-color: rgb(41, 41, 41);
+  color: white;
+}
+
 .category-dropdown select option {
-  border-bottom: 1px solid black;
-  font-size: 15px;
-  margin-top: 3px;
+  background-color: white;
+  color: black;
+  padding: 0.5em;
+  font-size: 14px;
   text-transform: capitalize;
-  
+}
+
+.category-dropdown select option:hover {
+  background-color: rgb(120, 164, 247);
+  color: white;
 }

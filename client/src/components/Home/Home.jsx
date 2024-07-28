@@ -8,6 +8,7 @@ const Home = () => {
  
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [error, setError] = useState({
     isError: false,
     msg: ''
@@ -20,8 +21,12 @@ const Home = () => {
     }
     const fetchProducts = async () => {
       try {
-        const {data} = await axios.get("/products");
-        setProducts(data.product);
+        const { data } = await axios.get(
+          selectedCategory === "All"
+            ? "/products"
+            : `/products?category=${selectedCategory}`
+        );
+        setProducts(data.products);
         setLoading(false);
       } catch (err) {
         setError({
@@ -33,7 +38,11 @@ const Home = () => {
     };
 
     fetchProducts();
-  }, [navigate]);
+  }, [navigate, selectedCategory]);
+
+    const onCategorySelect = (category) => {
+      setSelectedCategory(category);
+    };
 
 const messageStyle = {
   fontSize: "2rem",
@@ -49,7 +58,7 @@ if (error.isError) return <p style={messageStyle}>Error: {error.msg}</p>;
 
   return (
     <>
-      <Navbar />
+      <Navbar onCategorySelect={onCategorySelect} />
       <div>
         <h2 className="title">Products</h2>
 
