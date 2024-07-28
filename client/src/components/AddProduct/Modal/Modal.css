@@ -1,0 +1,25 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  font-size: 15px; /* Set font size */
+  z-index: 1000; /* Ensure it's on top */
+  display: flex;
+  align-items: center;
+}
+
+.modal p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.modal svg {
+  margin-right: 8px; /* Space between icon and text */
+  flex-shrink: 0; /* Ensure the icon doesn't shrink */
+}

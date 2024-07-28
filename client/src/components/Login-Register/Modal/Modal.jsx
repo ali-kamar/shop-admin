@@ -5,7 +5,7 @@ const Modal = ({ modalContent, closeModal }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       closeModal();
-    }, 4000);
+    }, 3000);
 
     return () => clearTimeout(timer); // Cleanup timer on unmount
   }, [closeModal]);

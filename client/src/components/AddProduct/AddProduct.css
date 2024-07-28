@@ -1,35 +1,43 @@
-.form-div{
+.form-div-add{
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.form {
-    margin-top: 20px;
-    background-color: rgb(41, 41, 41);
-    height: 400px;
+.form-add {
+    margin-top: 30px;
+    background-color: #171717;
+    height: 430px;
     width: 500px;
     padding: 20px;
+      border-radius: 25px;
+  transition: 0.4s ease-in-out;
 }
-.form h2 {
+.form-add:hover {
+  transform: scale(1.05);
+  border: 1px solid black;
+}
+.form-add h2 {
     text-align: center;
     margin-bottom: 15px;
     border-bottom: 1px white solid;
     color: rgb(120, 164, 247);
 }
 
-.inputs label, input {
+.inputs-add label, input {
     display: block;
     color: white;
    
 }
-.inputs input {
+.inputs-add input {
     width: 80%;
     margin: 8px auto;
-    
+    color: black;
+    border-radius: 10px;
+    padding: 4px;    
 }
-.form-btn{
+.form-btn-add{
    display: flex;
-   justify-content: center; 
+   justify-content: space-around; 
    margin-top: 15px;
 }

@@ -1,28 +1,135 @@
-import React from 'react'
-import './AddProduct.css'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../../api/axios";
+import Modal from "./Modal/Modal";
+import "./AddProduct.css";
 const AddProduct = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    category: "",
+    price: "",
+    url: "",
+    description: "",
+  });
+  const [isModal, setIsModal] = useState({
+    isModalOpen: false,
+    modalContent: "",
+    isError: false
+  });
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  const handleBtnClick = () => {
+    navigate("/");
+  };
+
+  const closeModal = () => {
+    setIsModal({
+      isModalOpen: false,
+      modalContent: "",
+      isError: false,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post("/products", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.data) {
+        setIsModal({
+          isModalOpen: true,
+          modalContent: "Product Added Successfully",
+          isError: false,
+        });
+        setFormData({
+          name: "",
+          category: "",
+          price: "",
+          url: "",
+          description: "",
+        });
+      }
+    } catch (err) {
+      setIsModal({
+        isModalOpen: true,
+        modalContent: `${err.response.data.msg}`,
+        isError: true,
+      });
+    }
+  };
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
-    <div className="form-div">
-      <form className="form">
+    <div className="form-div-add">
+      <form className="form-add" onSubmit={handleSubmit}>
         <h2>Add Product</h2>
-        <div className="inputs">
+        {isModal.isModalOpen && (
+          <Modal closeModal={closeModal} modalContent={isModal.modalContent} isError={isModal.isError} />
+        )}
+        <div className="inputs-add">
           <label htmlFor="name">Name :</label>
-          <input type="text" name="name" />
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
           <label htmlFor="category">Category :</label>
-          <input type="text" name="ategory" />
+          <input
+            type="text"
+            name="category"
+            style={{ textTransform: "lowercase" }}
+            value={formData.category}
+            onChange={handleChange}
+          />
           <label htmlFor="price">Price :</label>
-          <input type="number" name="price" />
+          <input
+            type="number"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+          />
           <label htmlFor="url">Url :</label>
-          <input type="text" name="url" />
+          <input
+            type="text"
+            name="url"
+            value={formData.url}
+            onChange={handleChange}
+          />
           <label htmlFor="description">Description :</label>
-          <input type="text" name="description" />
+          <input
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
         </div>
-        <div className="form-btn">
-          <button className="btn">Add</button>
+        <div className="form-btn-add">
+          <button className="btn" type="submit">
+            Add
+          </button>
+          <button className="btn" type="button" onClick={handleBtnClick}>
+            Back
+          </button>
         </div>
       </form>
     </div>
   );
-}
+};
 
-export default AddProduct
+export default AddProduct;

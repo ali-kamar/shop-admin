@@ -6,6 +6,9 @@
 
 .title{
   margin: 8px auto;
+  color: white;
   text-align: center;
   border-bottom: 1px rgb(120, 164, 247) solid;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
