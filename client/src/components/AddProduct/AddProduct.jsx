@@ -39,12 +39,7 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post("/products", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post("/products", formData);
       if (response.data) {
         setIsModal({
           isModalOpen: true,

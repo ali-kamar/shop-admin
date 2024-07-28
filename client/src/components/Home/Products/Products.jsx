@@ -2,7 +2,7 @@ import React from "react";
 import "./Products.css";
 
 const Products = ({ product }) => {
-  const { name, category, price, url } = product;
+  const { name, category, price, url, description } = product;
   return (
     <div className="card">
       <div className="card-image">
@@ -16,7 +16,7 @@ const Products = ({ product }) => {
         <p>${price}</p>
       </div>
       <div className="author">
-        <p>Negotiable</p>
+        <p>{description}</p>
         <div className="btns">
           <button>
             <i className="fa-regular fa-pen-to-square"></i>

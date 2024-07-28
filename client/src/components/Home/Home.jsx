@@ -8,7 +8,10 @@ const Home = () => {
  
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({
+    isError: false,
+    msg: ''
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,50 +20,32 @@ const Home = () => {
     }
     const fetchProducts = async () => {
       try {
-        // const response = await axios.get("/products");
-        // setProducts(response.data);
-        const data = [
-          {
-            id: 1,
-            name: "test",
-            category: "kitchen",
-            price: 2,
-            url: "https://images-na.ssl-images-amazon.com/images/I/611X8GI7hpL._AC_UL127_SR127,127_.jpg",
-          },
-          {
-            id: 1,
-            name: "test",
-            category: "kitchen",
-            price: 2,
-            url: "https://images-na.ssl-images-amazon.com/images/I/611X8GI7hpL._AC_UL127_SR127,127_.jpg",
-          },
-          {
-            id: 1,
-            name: "test",
-            category: "kitchen",
-            price: 2,
-            url: "https://images-na.ssl-images-amazon.com/images/I/611X8GI7hpL._AC_UL127_SR127,127_.jpg",
-          },
-          {
-            id: 1,
-            name: "test",
-            category: "kitchen",
-            price: 2,
-            url: "https://images-na.ssl-images-amazon.com/images/I/611X8GI7hpL._AC_UL127_SR127,127_.jpg",
-          },
-        ];
-        setProducts(data);
+        const {data} = await axios.get("/products");
+        setProducts(data.product);
         setLoading(false);
       } catch (err) {
-        setError(err.message);
+        setError({
+          isError: true,
+          msg: `${err.response.data.msg}`
+        });
+        setLoading(false);
       } 
     };
 
     fetchProducts();
   }, [navigate]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+const messageStyle = {
+  fontSize: "2rem",
+  color: "white",
+  textAlign: "center",
+  padding: "20px",
+  backgroundColor: "rgba(0, 0, 0, 0.7)",
+  borderRadius: "10px",
+};
+
+if (loading) return <p style={messageStyle}>Loading...</p>;
+if (error.isError) return <p style={messageStyle}>Error: {error.msg}</p>;
 
   return (
     <>
@@ -70,7 +55,7 @@ const Home = () => {
 
         <div className="product">
           {products.map((product) => (
-            <Products key={product.id} product={product} />
+            <Products key={product._id} product={product} />
           ))}
         </div>
       </div>
