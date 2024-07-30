@@ -1,0 +1,10 @@
+.modal-edit{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.modal-edit p {
+  color: rgb(120, 164, 247);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}

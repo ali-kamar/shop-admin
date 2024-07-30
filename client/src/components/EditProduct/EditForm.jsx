@@ -1,65 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "../../api/axios";
+import "./EditForm.css";
 import Modal from "./Modal/Modal";
-import "./AddProduct.css";
-const AddProduct = () => {
-  const navigate = useNavigate();
+
+const EditForm = ({ product, onClose, onSave }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    category: "",
-    price: "",
-    url: "",
-    description: "",
+    name: product.name,
+    category: product.category,
+    price: product.price,
+    url: product.url,
+    description: product.description,
   });
+
   const [isModal, setIsModal] = useState({
     isModalOpen: false,
     modalContent: "",
-    isError: false
   });
-
-  useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/login");
-    }
-  }, [navigate]);
-
-  const handleBtnClick = () => {
-    navigate("/");
-  };
 
   const closeModal = () => {
     setIsModal({
       isModalOpen: false,
       modalContent: "",
-      isError: false,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/products", formData);
-      if (response.data) {
-        setIsModal({
-          isModalOpen: true,
-          modalContent: "Product Added Successfully",
-          isError: false,
-        });
-        setFormData({
-          name: "",
-          category: "",
-          price: "",
-          url: "",
-          description: "",
-        });
+      const { data } = await axios.patch(`/products/${product._id}`, formData);
+      if (data) {
+        onSave(data.product);
+        onClose();
       }
     } catch (err) {
-      setIsModal({
-        isModalOpen: true,
-        modalContent: `${err.response.data.msg}`,
-        isError: true,
-      });
+        setIsModal({
+          isModalOpen: true,
+          modalContent: `${err.response.data.msg}`,
+        });
     }
   };
   const handleChange = (e) => {
@@ -68,31 +45,23 @@ const AddProduct = () => {
       [e.target.name]: e.target.value,
     });
   };
-      const categories = [
-        "kitchen",
-        "shisha",
-        "detergents",
-        "makeup",
-        "decorations",
-        "toys",
-        "sanitary",
-        "toolkit",
-        "electronics",
-        "outdoors",
-      ];
-
+    const categories = [
+      "kitchen",
+      "shisha",
+      "detergents",
+      "makeup",
+      "decorations",
+      "toys",
+      "sanitary",
+      "toolkit",
+      "electronics",
+      "outdoors",
+    ];
   return (
-    <div className="form-div-add">
-      <form className="form-add" onSubmit={handleSubmit}>
-        <h2>Add Product</h2>
-        {isModal.isModalOpen && (
-          <Modal
-            closeModal={closeModal}
-            modalContent={isModal.modalContent}
-            isError={isModal.isError}
-          />
-        )}
-        <div className="inputs-add">
+    <div className="form-div-edit">
+      <form className="form-edit" onSubmit={handleSubmit}>
+        <h2>Edit Product</h2>
+        <div className="inputs-edit">
           <label htmlFor="name">Name :</label>
           <input
             type="text"
@@ -135,17 +104,20 @@ const AddProduct = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="form-btn-add">
+        <div className="form-btn-edit">
           <button className="btn" type="submit">
-            Add
+            Edit
           </button>
-          <button className="btn" type="button" onClick={handleBtnClick}>
-            Back
+          <button className="btn" type="button" onClick={onClose}>
+            Cancel
           </button>
         </div>
+        {isModal.isModalOpen && (
+          <Modal closeModal={closeModal} modalContent={isModal.modalContent} />
+        )}
       </form>
     </div>
   );
 };
 
-export default AddProduct;
+export default EditForm;

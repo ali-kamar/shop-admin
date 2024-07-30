@@ -41,8 +41,17 @@ const updateProduct = async (req, res) => {
     params: { id: productId },
   } = req;
 
-  if (!name || !category || !price || !url) {
-    throw new BadRequestError("Company and Position can not be empty");
+if (!name) {
+    throw new BadRequestError("Name cannot be empty!");
+  }
+  if (!category) {
+    throw new BadRequestError("Category cannot be empty!");
+  }
+  if (!price) {
+    throw new BadRequestError("Price cannot be empty!");
+  }
+  if (!url) {
+    throw new BadRequestError("URL cannot be empty!")
   }
 
   const product = await Product.findByIdAndUpdate(

@@ -61,6 +61,15 @@ const Home = () => {
      }
    };
 
+     const handleEdit = (updatedProduct) => {
+       setProducts(
+         products.map((product) =>
+           product._id === updatedProduct._id ? updatedProduct : product
+         )
+       );
+     };
+
+
   const messageStyle = {
     fontSize: "2rem",
     color: "white",
@@ -85,6 +94,7 @@ const Home = () => {
               key={product._id}
               product={product}
               onDelete={handleDelete}
+              onEdit={handleEdit}
             />
           ))}
         </div>
