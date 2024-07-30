@@ -49,6 +49,18 @@ const Home = () => {
     setSearch(name);
   };
 
+   const handleDelete = async (id) => {
+     try {
+       await axios.delete(`/products/${id}`);
+       setProducts(products.filter((product) => product._id !== id));
+     } catch (err) {
+       setError({
+         isError: true,
+         msg: `${err.response.data.msg}`,
+       });
+     }
+   };
+
   const messageStyle = {
     fontSize: "2rem",
     color: "white",
@@ -63,13 +75,17 @@ const Home = () => {
 
   return (
     <>
-      <Navbar onCategorySelect={onCategorySelect} onSearch={onSearch}/>
+      <Navbar onCategorySelect={onCategorySelect} onSearch={onSearch} />
       <div>
         <h2 className="title">Products</h2>
 
         <div className="product">
           {products.map((product) => (
-            <Products key={product._id} product={product} />
+            <Products
+              key={product._id}
+              product={product}
+              onDelete={handleDelete}
+            />
           ))}
         </div>
       </div>

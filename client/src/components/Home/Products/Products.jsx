@@ -1,8 +1,13 @@
 import React from "react";
 import "./Products.css";
 
-const Products = ({ product }) => {
-  const { name, category, price, url, description } = product;
+const Products = ({ product, onDelete }) => {
+  const { _id, name, category, price, url, description } = product;
+
+  const handleDelete = () => {
+    onDelete(_id);
+  };
+
   return (
     <div className="card">
       <div className="card-image">
@@ -18,10 +23,10 @@ const Products = ({ product }) => {
       <div className="author">
         <p>{description}</p>
         <div className="btns">
-          <button>
+          <button className="edit-btn">
             <i className="fa-regular fa-pen-to-square"></i>
           </button>
-          <button>
+          <button className="delete-btn" onClick={handleDelete}>
             <i className="fa-solid fa-trash"></i>
           </button>
         </div>
