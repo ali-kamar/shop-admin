@@ -34,6 +34,9 @@ app.use(xss());
 // routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/products", authenticateUser, productsRouter);
+app.get('/', (req, res) => {
+  res.send('<h1>My Shop Admin Page</h1>');
+});
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

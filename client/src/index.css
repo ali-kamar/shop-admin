@@ -31,3 +31,11 @@ code {
   width: 100px;
   height: 30px;
 }
+
+
+@media (max-width: 480px) {
+.btn {
+  width: 50px;
+  font-size: 8px;
+}
+}

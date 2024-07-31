@@ -105,3 +105,14 @@
 }
 
 
+@media (max-width: 480px) {
+  .div-form{
+    margin-top: 30%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  .form {
+    width: 350px;
+  }
+}

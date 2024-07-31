@@ -12,3 +12,10 @@
   letter-spacing: 3px;
   text-transform: uppercase;
 }
+
+@media (max-width: 480px) {
+    .product{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+  }

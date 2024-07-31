@@ -75,3 +75,10 @@
   background-color: rgb(120, 164, 247);
   color: white;
 }
+
+@media (max-width: 480px) {
+  .navbar {
+    justify-content: space-between;
+    gap: 0px;
+  }
+}
