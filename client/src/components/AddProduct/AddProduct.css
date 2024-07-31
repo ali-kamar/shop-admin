@@ -1,4 +1,5 @@
 .form-div-add {
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -48,4 +49,23 @@
   display: flex;
   justify-content: space-around;
   margin-top: 15px;
+}
+
+@media (max-width: 480px) {
+  .form-add{
+    width: 300px;
+    height: 400px;
+    margin-top: 0px;
+    margin-bottom: 120px;
+  }
+  .form-add h2 {
+    font-size: 20px;
+  }
+  .inputs-add label{
+    font-size: 13px;
+  }
+  .form-div-add{
+    align-items: center;
+  }
+  
 }

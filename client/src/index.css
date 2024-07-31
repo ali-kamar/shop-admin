@@ -35,7 +35,7 @@ code {
 
 @media (max-width: 480px) {
 .btn {
-  width: 50px;
-  font-size: 8px;
+  width: 80px;
+  font-size: 10px;
 }
 }

@@ -80,5 +80,30 @@
   .navbar {
     justify-content: space-between;
     gap: 0px;
+    width: 100%;
   }
+  .inputBox{
+    font-size: 10px ;
+  }
+  .search_icon{
+    padding: 0 5px;
+  }
+  .custom-dropdown{
+    margin: 0;
+    width: 100px;
+  }
+  .inputBox_container{
+    width: 140px;
+  }
+  .search_icon{
+    height: 25px;
+    width: 25px;
+  }
+  .x{
+    height: 20px !important;
+    width: 20px !important;
+  
+    
+  }
+
 }

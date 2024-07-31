@@ -64,6 +64,7 @@ const EditForm = ({ product, onClose, onSave }) => {
         <div className="inputs-edit">
           <label htmlFor="name">Name :</label>
           <input
+            id="name"
             type="text"
             name="name"
             value={formData.name}
@@ -71,6 +72,7 @@ const EditForm = ({ product, onClose, onSave }) => {
           />
           <label htmlFor="category">Category :</label>
           <select
+            id="category"
             name="category"
             value={formData.category}
             onChange={handleChange}
@@ -84,6 +86,7 @@ const EditForm = ({ product, onClose, onSave }) => {
           </select>
           <label htmlFor="price">Price :</label>
           <input
+            id="price"
             type="number"
             name="price"
             value={formData.price}
@@ -91,6 +94,7 @@ const EditForm = ({ product, onClose, onSave }) => {
           />
           <label htmlFor="url">Url :</label>
           <input
+            id="url"
             type="text"
             name="url"
             value={formData.url}
@@ -98,6 +102,7 @@ const EditForm = ({ product, onClose, onSave }) => {
           />
           <label htmlFor="description">Description :</label>
           <input
+            id="description"
             type="text"
             name="description"
             value={formData.description}

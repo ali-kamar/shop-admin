@@ -35,9 +35,9 @@ const SearchBar = ({ onSearch }) => {
             width="16"
             height="16"
             fill="currentColor"
-            className="bi bi-x"
+            className="bi bi-x x"
             viewBox="0 0 16 16"
-            style={{width:'40px', height:'25px'}}
+            style={{width:'40px', height:'25px' ,cursor:'pointer',}}
           >
             <path d="M4.646 4.646a.5.5 0 011 0L8 7.293l2.354-2.647a.5.5 0 11.707.707L8.707 8l2.354 2.354a.5.5 0 11-.707.707L8 8.707l-2.354 2.354a.5.5 0 01-.707-.707L7.293 8 4.646 5.646a.5.5 0 010-.707z" />
           </svg>
